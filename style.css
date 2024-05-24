@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Courier New, sans-serif ;
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #F3FDFF, #D1F7FF);
@@ -18,7 +18,7 @@ header {
 
 .logo {
     position: relative;
-    top: 20px; /* Adjust this value to move the image down */
+    top: 20px; 
 }
 
 
@@ -27,12 +27,14 @@ header {
     width: 187px;
     border-radius: 44.5px;
     transform: translateY(20px);
+    margin-right: 20px;
 }
 nav {
     flex-grow: 1;
     display: flex;
     justify-content: right; 
-    align-items: right; 
+
+    
 }
 
 nav ul {
@@ -40,11 +42,9 @@ nav ul {
     display: flex;
     margin: 0;
     padding: 0;
-    
 }
 
 nav ul li {
-    margin-left: 20px;
     margin: 0 60px;
     
 }
@@ -52,8 +52,9 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-family: 'Font awesome 5 free';
+    font-family: Courier New, sans-serif ;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
 }
 
 nav ul li a:hover {
@@ -62,69 +63,158 @@ nav ul li a:hover {
 
 .head {
     font-size: 24px; 
+    margin-top: 0px;
 }
 
 .log_in {
+    display: flex;
+    align-items: center;
     font-size: 16px; 
-    margin-left: auto;
+    margin-left: 40px; 
 }
 
 .log_in a {
-    display: flex;
-    align-items: center;
-
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    font-family: Courier New, sans-serif ;
+    margin-right: 10px;
 }
 
-.hero {
+.account {
+    width: 51.72px; 
+    height: 55px; 
+}
+.main {
+    display: flex;
+    flex-flow: column;
     text-align: center;
     padding: 50px 20px;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-image {
-    width: 150px;
+.cloud {
+    position: absolute;
+    background: url('/pics/image\ 11.png') no-repeat;
+    background-size: contain;
+    width: 227px;
+    height: 225px;
+    opacity: 0.7;
+    animation: floatIn 2s ease-out forwards;
+}
+@keyframes floatIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+}
+#cloud1 {
+    top: 22%;
+    left: 20%;
+    animation-delay: 0.5s;
 }
 
-.hero h1 {
+#cloud2 {
+    top: 30%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+#cloud3 {
+    top: 40%;
+    left: 30%;
+    animation-delay: 1.5s;
+}
+
+#cloud4 {
+    top: 40%;
+    right: 30%;
+    animation-delay: 2s;
+}
+#cloud5 {
+    top: 10%;
+    left: 30%;
+    animation-delay: 0.5s;
+}
+
+#cloud6 {
+    top: 20%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+#cloud7 {
+    top: 34%;
+    left: 18%;
+    animation-delay: 1.5s;
+}
+
+#cloud8 {
+    top: 10%;
+    right: 30%;
+    animation-delay: 2s;
+}
+.main-drone {
+    width: 395px;
+    height: 429px;
+}
+
+.main h1 {
     font-size: 48px;
     margin: 20px 0;
 }
 
 .order-button {
-    background-color: #4ADEFF;
-    color: white;
+    background-color: #6FD8EF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
     border: none;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 255px;
+    height: 61px;
+    font-family: Courier New, sans-serif ;
 }
 
 .order-button:hover {
     background-color: #b2ebf2;
 }
-
+h1{
+    font-family: Courier New, sans-serif ;
+}
 .about {
-    text-align: center;
     padding: 50px 20px;
-    background: #E6F7FF;
-    border-radius: 15px;
     margin: 20px auto;
     width: 80%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    height: 650px;
 }
 
 .about h2 {
     font-size: 36px;
-    margin-bottom: 20px;
+    text-align: center;
 }
 
-.about p {
+.para {
+    font-family: Courier New, sans-serif ;
     font-size: 18px;
     margin-bottom: 20px;
+    float: right;
+    width: 543px;
+    height: 540px;
 }
 
-.about-icon {
-    width: 100px;
+.about-drone {
+    float: left;
+    width: 533px;
+    height: 476px;
 }
 
 footer {
