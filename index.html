@@ -3,97 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>SkyCourier</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #e6f7ff;
-            text-align: center;
-        }
-        .header {
-            background-color: #66ccff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header img {
-            height: 50px;
-        }
-        .header nav a {
-            margin: 0 15px;
-            color: #fff;
-            text-decoration: none;
-        }
-        .main-content {
-            padding: 50px 20px;
-        }
-        .main-content h1 {
-            margin-top: 0;
-        }
-        .order-button {
-            background-color: #33ccff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 20px 0;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .about-us {
-            padding: 50px 20px;
-            background-color: #b3e0ff;
-        }
-        .about-us img {
-            height: 100px;
-        }
-        .footer {
-            background-color: #66ccff;
-            padding: 20px;
-        }
-        .footer p, .footer a {
-            margin: 5px 0;
-            color: white;
-            text-decoration: none;
-        }
-    </style>
 </head>
 <body>
 
-    <header class="header">
-        <img src="your-logo-url.png" alt="SkyCourier Logo">
+    <header>
+        <div class="logo">
+            <img src="/pics/skycourier_pic.png" alt="SkyCourier Logo">
+        </div>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#order">Order</a>
-            <a href="#contact">Contact</a>
-            <a href="#login">Log in</a>
+            <ul>
+                <li class="head"><a href="#">Home</a></li>
+                <li class="head"><a href="#">Order</a></li>
+                <li class="head"><a href="#">Contact</a></li>
+                <li class="log_in"><a href="#">Log in</a></li>
+                <li class="log_in"><a href="#">Log in</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="main-content">
+    <section class="hero">
+        <img src="/pics/drone_cloud.png" alt="Drone" class="hero-image">
         <h1>SkyCourier</h1>
-        <img src="your-drone-image-url.png" alt="Drone Image" style="width: 100px;">
         <button class="order-button">Click to order</button>
-    </div>
-
-    <section class="about-us">
+    </section>
+    
+    <section class="about">
         <h2>About us</h2>
-        <img src="your-second-drone-image-url.png" alt="Drone Image">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <img src="/pics/main_drone.png" alt="Drone Icon" class="about-icon">
     </section>
 
-    <footer class="footer">
-        <p>Contacts:</p>
-        <p>+000-000-000</p>
-        <p>skycourier@gmail.com</p>
-        <div>
-            <a href="#whatsapp-link">WhatsApp</a> | 
-            <a href="#youtube-link">YouTube</a> | 
-            <a href="#instagram-link">Instagram</a>
+    <footer>
+        <div class="contact-info">
+            <p>Contacts:</p>
+            <p>+000-000-000</p>
+            <p>skycourier@gmail.com</p>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="/pics/free-icon-whatsapp-3670133.png" alt="WhatsApp"></a>
+            <a href="#"><img src="/pics/free-icon-youtube-3670163.png" alt="YouTube"></a>
+            <a href="#"><img src="/pics/instagram_icon.png" alt="Instagram"></a>
         </div>
     </footer>
 
