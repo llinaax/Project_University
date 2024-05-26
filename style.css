@@ -15,12 +15,10 @@ header {
     position: relative;
     z-index: 1;
 }
-
 .logo {
     position: relative;
     top: 20px; 
 }
-
 
 .logo img {
     height: 142px;
@@ -103,6 +101,32 @@ nav ul li a:hover {
     opacity: 0.7;
     animation: floatIn 2s ease-out forwards;
 }
+.grocery {
+    position: absolute;
+    background: url('/pics/grocery-cart.png') no-repeat;
+    background-size: contain;
+    width: 153px;
+    height: 163px;
+    animation: floatIn2 2s ease-out forwards;
+    
+}
+.grocery1{
+    position: absolute;
+    background: url('/pics/vegetable.png') no-repeat;
+    background-size: contain;
+    width: 167px;
+    height: 161px;
+    animation: floatIn2 2s ease-out forwards;
+}
+.grocery2 {
+    position: absolute;
+    background: url('/pics/pan.png') no-repeat;
+    background-size: contain;
+    width: 167px;
+    height: 161px;
+    animation: floatIn2 2s ease-out forwards;
+    
+}
 @keyframes floatIn {
     0% {
         transform: translateY(100px);
@@ -112,6 +136,43 @@ nav ul li a:hover {
         transform: translateY(0);
         opacity: 0.7;
     }
+}
+@keyframes floatIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#grocery-cart{
+    top: 50%;
+    left: 5%;
+    transform: rotate(-10.68deg);
+}
+#grocery-cart1{
+    top: 50%;
+    right: 5%;
+    transform: rotate(10.68deg);
+}
+#vegetable{
+    top: 55%;
+    left: 13%;
+    transform: rotate(-16.68deg);
+}
+#vegetable1{
+    top: 55%;
+    right: 11%;
+    transform: rotate(16.68deg);
+}
+#pan{
+    top: 50%;
+    left: 20%;
+}
+#pan1{
+    top: 50%;
+    right: 20%;
 }
 #cloud1 {
     top: 22%;
@@ -204,7 +265,7 @@ h1{
 
 .para {
     font-family: Courier New, sans-serif ;
-    font-size: 18px;
+    font-size: 33px;
     margin-bottom: 20px;
     float: right;
     width: 543px;
@@ -227,9 +288,26 @@ footer {
 
 .contact-info p {
     margin: 5px 0;
+    font-size: 24px;
 }
 
+.social-media{
+    margin-top: 50px;
+}
 .social-media a img {
-    width: 30px;
-    margin-left: 10px;
+    width: 55px;
+    height: 55px;
+    
+}
+.logo_foot{
+    position: relative;
+    bottom: 20px; 
+}
+
+.logo_foot img{
+    height: 142px;
+    width: 187px;
+    border-radius: 44.5px;
+    transform: translateY(20px);
+    margin-right: 20px;
 }
