@@ -1,7 +1,6 @@
-// app.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const sql = require('./db'); // Импортируем модуль подключения к базе данных
+const sql = require('./db'); // Import database connection
 const path = require('path');
 
 const app = express();
@@ -12,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Пример маршрута для получения всех пользователей
+// Route to get all users
 app.get('/users', (req, res) => {
   const request = new sql.Request();
   request.query('SELECT * FROM Users', (err, result) => {
@@ -24,24 +23,23 @@ app.get('/users', (req, res) => {
   });
 });
 
-// Пример маршрута для создания нового пользователя
-// Пример маршрута для создания нового пользователя
+// Route to create a new user
 app.post('/users', (req, res) => {
-    const { name, email } = req.body;
-    const request = new sql.Request();
-    request.input('name', sql.VarChar, name);
-    request.input('email', sql.VarChar, email);
-    request.query('INSERT INTO Users (name, email) VALUES (@name, @email)', (err, result) => {
-      if (err) {
-        res.status(500).send('Error creating new user.');
-      } else {
-        res.status(201).send('User created successfully.');
-      }
-    });
+  const { name, email, password } = req.body;
+  const request = new sql.Request();
+  request.input('name', sql.VarChar, name);
+  request.input('email', sql.VarChar, email);
+  request.input('password', sql.VarChar, password);
+  request.query('INSERT INTO Users (name, email, password) VALUES (@name, @email, @password)', (err, result) => {
+    if (err) {
+      res.status(500).send('Error creating new user.');
+    } else {
+      res.status(201).send('User created successfully.');
+    }
   });
-  
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-  
+});
+
+const PORT = process.env.PORT || 5500;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

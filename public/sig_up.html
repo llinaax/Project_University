@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sign_up.css">
+    <title>Sign up</title>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="label">SkyCourier</a>
+        <h2>Register</h2>
+        <form action="/users" method="POST">
+            <div class="input-group">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Enter password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Repeat password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div class="social-login">
+            <p>Log in</p>
+            <button type="button" class="google-btn"></button>
+        </div>
+    </div>
+</body>
+</html>
+
