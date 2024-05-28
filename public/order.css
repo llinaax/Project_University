@@ -3,6 +3,10 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #F3FDFF, #D1F7FF);
+  color: white;
+  text-decoration: none;
+  font-family: Courier New, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header {
@@ -76,7 +80,9 @@ nav ul li a:hover {
   font-family: Courier New, sans-serif;
   margin-right: 10px;
 }
-
+.line{
+    transform: rotate(90deg);
+}
 .account {
   width: 51.72px;
   height: 55px;
@@ -141,10 +147,11 @@ nav ul li a:hover {
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
 }
 
 .row {
@@ -167,6 +174,7 @@ nav ul li a:hover {
 }
 
 .types-of-drones {
+  color: black;
   background-color: #e0f7ff;
   padding: 20px;
   text-align: center;

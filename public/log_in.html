@@ -43,15 +43,15 @@
                 },
                 body: JSON.stringify(data)
             })
+            .then(response => response.json())
             .then(response => {
-                if (response.ok) {
+                if (response.success) {
                     alert('Logged in successfully.');
-                    localStorage.setItem('isLoggedIn', 'true'); // Сохранение состояния входа
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('username', response.username); // Сохранение имени пользователя
                     window.location.href = 'index.html'; // Перенаправление на главную страницу
                 } else {
-                    return response.json().then(error => {
-                        throw new Error(error.message);
-                    });
+                    alert(response.message);
                 }
             })
             .catch(error => {

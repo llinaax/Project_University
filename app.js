@@ -77,12 +77,13 @@ app.post('/api/login', (req, res) => {
   request.query('SELECT * FROM Users WHERE email = @email AND password = @password', (err, result) => {
     if (err) {
       console.error('Ошибка при аутентификации пользователя:', err);
-      res.status(500).json({ message: 'Ошибка при аутентификации пользователя.' });
+      res.status(500).json({ success: false, message: 'Ошибка при аутентификации пользователя.' });
     } else {
       if (result.recordset.length > 0) {
-        res.status(200).json({ message: 'Аутентификация прошла успешно.' });
+        const user = result.recordset[0];
+        res.status(200).json({ success: true, username: user.name });
       } else {
-        res.status(401).json({ message: 'Неверный email или пароль.' });
+        res.status(401).json({ success: false, message: 'Неверный email или пароль.' });
       }
     }
   });

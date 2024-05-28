@@ -3,6 +3,9 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #F3FDFF, #D1F7FF);
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header {
@@ -63,7 +66,9 @@ nav ul li a:hover {
     font-size: 24px; 
     margin-top: 0px;
 }
-
+.line{
+    transform: rotate(90deg);
+}
 .log_in {
     display: flex;
     align-items: center;
@@ -249,9 +254,11 @@ nav ul li a:hover {
     background-color: #b2ebf2;
 }
 h1{
+    color: black;
     font-family: Courier New, sans-serif ;
 }
 .about {
+    color: black;
     padding: 50px 20px;
     margin: 20px auto;
     width: 80%;
