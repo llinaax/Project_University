@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Конфигурация подключения к базе данных SQL Server
 const config = {
   user: 'alina',          // Имя пользователя
-  password: '12457800alina',           // Пароль
+  password: '',           // Пароль
   server: 'localhost',    // Имя сервера или IP-адрес
   port: 1433,             // Порт сервера
   database: 'SkyCourier', // Имя базы данных
@@ -59,9 +59,9 @@ app.post('/api/users', (req, res) => {
   request.query('INSERT INTO Users (name, email, password) VALUES (@name, @email, @password)', (err, result) => {
     if (err) {
       console.error('Ошибка при создании нового пользователя:', err);
-      res.status(500).send(`Ошибка при создании нового пользователя: ${err.message}`);
+      res.status(500).json({ message: 'Ошибка при создании нового пользователя.' });
     } else {
-      res.status(201).send('Пользователь успешно создан.');
+      res.status(201).json({ message: 'Пользователь успешно создан.' });
     }
   });
 });
