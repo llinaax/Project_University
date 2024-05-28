@@ -1,0 +1,23 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "website1",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llinaax/Project_University.git"
+  },
+  "author": "Alina Taranova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llinaax/Project_University/issues"
+  },
+  "homepage": "https://github.com/llinaax/Project_University#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
+  }
+}
