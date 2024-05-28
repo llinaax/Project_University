@@ -1,18 +1,40 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sql = require('./db'); // Импортируем подключение к базе данных
 const path = require('path');
+const sql = require('mssql');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Конфигурация подключения к базе данных SQL Server
+const config = {
+  user: 'alina',          // Имя пользователя
+  password: '12457800alina',           // Пароль
+  server: 'localhost',    // Имя сервера или IP-адрес
+  port: 1433,             // Порт сервера
+  database: 'SkyCourier', // Имя базы данных
+  options: {
+    encrypt: true,        // Используйте шифрование
+    trustServerCertificate: true // Доверие самоподписанному сертификату
+  }
+};
+
+// Подключение к базе данных
+sql.connect(config, err => {
+  if (err) {
+    console.error('Ошибка подключения к базе данных:', err);
+    return;
+  }
+  console.log('Подключено к базе данных SQL Server.');
+});
+
 // Обслуживание статических файлов из директории "public"
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Маршрут для получения всех пользователей (GET-запрос)
-app.get('/users', (req, res) => {
+app.get('/api/users', (req, res) => {
   const request = new sql.Request();
   request.query('SELECT * FROM Users', (err, result) => {
     if (err) {
@@ -25,9 +47,9 @@ app.get('/users', (req, res) => {
 });
 
 // Маршрут для создания нового пользователя (POST-запрос)
-app.post('/users', (req, res) => {
+app.post('/api/users', (req, res) => {
   const { name, email, password } = req.body;
-  console.log('Полученные данные:', req.body); // Логирование данных формы
+  console.log('Полученные данные:', req.body);
 
   const request = new sql.Request();
   request.input('name', sql.VarChar, name);
@@ -36,7 +58,7 @@ app.post('/users', (req, res) => {
 
   request.query('INSERT INTO Users (name, email, password) VALUES (@name, @email, @password)', (err, result) => {
     if (err) {
-      console.error('Ошибка при создании нового пользователя:', err); // Логирование ошибки
+      console.error('Ошибка при создании нового пользователя:', err);
       res.status(500).send(`Ошибка при создании нового пользователя: ${err.message}`);
     } else {
       res.status(201).send('Пользователь успешно создан.');
@@ -44,7 +66,7 @@ app.post('/users', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001; // Измените порт здесь
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Сервер работает на порту ${PORT}`);
 });
