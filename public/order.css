@@ -1,5 +1,5 @@
 body {
-  font-family: Courier New, sans-serif ;
+  font-family: Courier New, sans-serif;
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #F3FDFF, #D1F7FF);
@@ -29,24 +29,152 @@ header {
   margin-right: 20px;
 }
 
+nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: right;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 60px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-family: Courier New, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
 .head {
-  font-size: 24px; 
+  font-size: 24px;
   margin-top: 0px;
 }
 
 .log_in {
   display: flex;
   align-items: center;
-  font-size: 16px; 
-  margin-left: 40px; 
+  font-size: 16px;
+  margin-left: 40px;
 }
 
 .log_in a {
   color: white;
   text-decoration: none;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-  font-family: Courier New, sans-serif ;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Courier New, sans-serif;
   margin-right: 10px;
+}
+
+.account {
+  width: 51.72px;
+  height: 55px;
+}
+
+.center-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.center-title h1 {
+  font-size: 48px;
+  color: black;
+  margin: 0;
+}
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.search-section input {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 25px 0 0 25px;
+}
+
+.search-section button {
+  background-color: #6FD8EF;
+  border: none;
+  padding: 10px;
+  border-radius: 0 25px 25px 0;
+}
+
+.search-section button img {
+  width: 20px;
+  height: 20px;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.category-buttons button {
+  background-color: #6FD8EF;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: black;
+  padding: 10px 80px;
+  margin: 0 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+}
+
+.category-buttons button:hover {
+  background-color: #b2ebf2;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.content .item {
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+}
+
+.content .item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.types-of-drones {
+  background-color: #e0f7ff;
+  padding: 20px;
+  text-align: center;
+}
+
+.types-of-drones .drone-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.types-of-drones .drone-info img {
+  width: 150px;
+  margin-right: 20px;
 }
 
 footer {
@@ -62,19 +190,21 @@ footer {
   font-size: 24px;
 }
 
-.social-media{
+.social-media {
   margin-top: 50px;
 }
+
 .social-media a img {
   width: 55px;
-  height: 55px; 
-}
-.logo_foot{
-  position: relative;
-  bottom: 20px; 
+  height: 55px;
 }
 
-.logo_foot img{
+.logo_foot {
+  position: relative;
+  bottom: 20px;
+}
+
+.logo_foot img {
   height: 142px;
   width: 187px;
   border-radius: 44.5px;

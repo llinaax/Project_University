@@ -3,13 +3,13 @@ const sql = require('mssql');
 // Конфигурация подключения к базе данных SQL Server
 const config = {
   user: 'alina',          // Имя пользователя
-  password: '',           // Пароль (оставьте пустым, если его нет)
-  server: 'ALINA_LAPTOP', // Имя сервера
-  port: 5500,             // Порт сервера
+  password: '12457800alina',           // Пароль (оставьте пустым, если его нет)
+  server: 'localhost', // Имя сервера
+  port: 1433,             // Порт сервера
   database: 'SkyCourier', // Имя базы данных
   options: {
-    encrypt: true,        // Используйте шифрование, если требуется
-    trustServerCertificate: true // Используйте это, если у вас самоподписанный сертификат
+    encrypt: true,        // Используйте шифрование
+    trustServerCertificate: true // Доверие самоподписанному сертификату
   }
 };
 

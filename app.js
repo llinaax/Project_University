@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sql = require('./db'); // Import database connection
+const sql = require('./db'); // Импортируем подключение к базе данных
 const path = require('path');
 
 const app = express();
@@ -8,38 +8,43 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from the "public" directory
+// Обслуживание статических файлов из директории "public"
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route to get all users
+// Маршрут для получения всех пользователей (GET-запрос)
 app.get('/users', (req, res) => {
   const request = new sql.Request();
   request.query('SELECT * FROM Users', (err, result) => {
     if (err) {
-      res.status(500).send('Error retrieving users from database.');
+      console.error('Ошибка при получении пользователей из базы данных:', err);
+      res.status(500).send('Ошибка при получении пользователей из базы данных.');
     } else {
       res.json(result.recordset);
     }
   });
 });
 
-// Route to create a new user
+// Маршрут для создания нового пользователя (POST-запрос)
 app.post('/users', (req, res) => {
   const { name, email, password } = req.body;
+  console.log('Полученные данные:', req.body); // Логирование данных формы
+
   const request = new sql.Request();
   request.input('name', sql.VarChar, name);
   request.input('email', sql.VarChar, email);
   request.input('password', sql.VarChar, password);
+
   request.query('INSERT INTO Users (name, email, password) VALUES (@name, @email, @password)', (err, result) => {
     if (err) {
-      res.status(500).send('Error creating new user.');
+      console.error('Ошибка при создании нового пользователя:', err); // Логирование ошибки
+      res.status(500).send(`Ошибка при создании нового пользователя: ${err.message}`);
     } else {
-      res.status(201).send('User created successfully.');
+      res.status(201).send('Пользователь успешно создан.');
     }
   });
 });
 
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 3001; // Измените порт здесь
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Сервер работает на порту ${PORT}`);
 });

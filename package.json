@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/llinaax/Project_University#readme",
   "dependencies": {
+    "connect-history-api-fallback": "^2.0.0",
     "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
     "mssql": "^10.0.2",
     "mysql": "^2.18.1"
   }
