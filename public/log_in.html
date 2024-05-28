@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="log_in.css">
+    <title>Log in</title>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="label">SkyCourier</a>
+        <h2>Log in</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Log in</button>
+        </form>
+        <div class="social-login">
+            <a href="sign_up.html">Sign up</a>
+            <button type="button" class="google-btn"></button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            // Отправка данных на сервер для аутентификации
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Logged in successfully.');
+                    localStorage.setItem('isLoggedIn', 'true'); // Сохранение состояния входа
+                    window.location.href = 'index.html'; // Перенаправление на главную страницу
+                } else {
+                    return response.json().then(error => {
+                        throw new Error(error.message);
+                    });
+                }
+            })
+            .catch(error => {
+                alert('Error logging in: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
+
+

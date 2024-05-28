@@ -20,8 +20,9 @@
             </ul>
         </nav>
         <div class="log_in">
-            <a href="log_in.html" class="log_in">Log in</a>
-            <a href="sig_up.html" class="log_in">Sign in</a>
+            <a href="log_in.html" class="log_in" id="log_in">Log in</a>
+            <a href="sig_up.html" class="log_in" id="sign_up">Sign in</a>
+            <a href="#" id="logoutLink" style="display:none;">Log out</a>
             <img src="/pics/account.png" alt="Login Icon" class="account">
         </div>
     </header>
@@ -75,6 +76,29 @@
             <img src="/pics/skycourier_pic.png" alt="SkyCourier Logo">
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const loginLink = document.getElementById('log_in');
+            const signUpLink = document.getElementById('sign_up');
+            const logoutLink = document.getElementById('logoutLink');
 
+            if (isLoggedIn === 'true') {
+                loginLink.style.display = 'none';
+                signUpLink.style.display = 'none';
+                logoutLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signUpLink.style.display = 'inline';
+                logoutLink.style.display = 'none';
+            }
+
+            logoutLink.addEventListener('click', function() {
+                localStorage.removeItem('isLoggedIn');
+                alert('Logged out successfully.');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
 </body>
 </html>

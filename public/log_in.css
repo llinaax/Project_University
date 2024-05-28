@@ -1,0 +1,99 @@
+body {
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Courier New, sans-serif ;
+}
+
+.container {
+    background: #e0f7fa;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 300px;
+    text-align: center;
+}
+
+.label {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #90caf9;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #b0bec5;
+    border-radius: 60px;
+}
+
+.input-group button {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #80deea;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+button[type="submit"] {
+    background-color: #039be5;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0288d1;
+}
+
+.social-login {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-login p {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #1976d2;
+}
+
+.social-login button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.google-btn {
+    background: url('/pics/google.png') no-repeat center center;
+    background-size: cover;
+}

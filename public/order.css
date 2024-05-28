@@ -172,15 +172,23 @@ nav ul li a:hover {
   text-align: center;
 }
 
-.types-of-drones .drone-info {
+.types-of-drones .row {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
-.types-of-drones .drone-info img {
-  width: 150px;
-  margin-right: 20px;
+.types-of-drones .item {
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+}
+
+.types-of-drones .item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 footer {
