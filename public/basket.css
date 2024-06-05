@@ -64,7 +64,6 @@ nav ul li a:hover {
     font-size: 24px; 
     margin-top: 0px;
 }
-
 .line {
     transform: rotate(90deg);
 }
@@ -91,7 +90,7 @@ nav ul li a:hover {
 
 section {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
 }
@@ -101,45 +100,34 @@ h1 {
     color: black;
 }
 
-img {
-    width: 120%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.menu {
-    margin-top: 20px;
-    width: 80%;
-    text-align: center;
-}
-
-.menu-item {
+ul li {
+    margin: 10px 60px;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
-    background: #6FD8EF;
-    padding: 10px;
-    border-radius: 5px;
 }
-
-.menu-item span {
-    font-size: 1.2em;
+p{
     color: black;
 }
-
-.menu-item button {
+button {
     padding: 5px 10px;
     font-size: 1em;
     color: white;
-    background-color: #009dff;
+    background-color: #b7dcf3;
     border: none;
-    border-radius: 5px;
+    border-radius: 60px;
     cursor: pointer;
 }
 
-.menu-item button:hover {
+button:hover {
     background-color: #007acc;
 }
 
@@ -177,3 +165,4 @@ footer {
     transform: translateY(20px);
     margin-right: 20px;
 }
+

@@ -33,6 +33,11 @@ sql.connect(config, err => {
 // Обслуживание статических файлов из директории "public"
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Обработка корневого маршрута для предоставления index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Маршрут для получения всех пользователей (GET-запрос)
 app.get('/api/users', (req, res) => {
   const request = new sql.Request();
@@ -93,4 +98,3 @@ const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Сервер работает на порту ${PORT}`);
 });
-

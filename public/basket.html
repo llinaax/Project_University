@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mac.css">
-    <title>MacDonald's Menu</title>
+    <link rel="stylesheet" href="basket.css">
+    <title>Basket</title>
 </head>
 <body>
     <header>
@@ -30,30 +30,9 @@
     </header>
     <section>
         <div>
-            <h1>MacDonald's</h1>
+            <h1>Basket</h1>
         </div>
-        <div class="content">
-            <a href="mac.html"><img src="/pics/mac.jpg" alt="McDonald's"></a> 
-        </div>
-        <div class="menu">
-            <h2>Menu</h2>
-            <div class="menu-item">
-                <span>Big Mac - $5.99</span>
-                <button onclick="addToBasket('Big Mac', 5.99)">Add to Basket</button>
-            </div>
-            <div class="menu-item">
-                <span>Chicken Nuggets - $4.99</span>
-                <button onclick="addToBasket('Chicken Nuggets', 4.99)">Add to Basket</button>
-            </div>
-            <div class="menu-item">
-                <span>Fries - $2.99</span>
-                <button onclick="addToBasket('Fries', 2.99)">Add to Basket</button>
-            </div>
-            <div class="menu-item">
-                <span>Coke - $1.99</span>
-                <button onclick="addToBasket('Coke', 1.99)">Add to Basket</button>
-            </div>
-        </div>
+        <div id="basket-content"></div>
     </section>
     <footer>
         <div class="contact-info">
@@ -99,13 +78,31 @@
                 alert('Logged out successfully.');
                 window.location.href = 'index.html';
             });
+
+            displayBasket();
         });
 
-        function addToBasket(item, price) {
+        function displayBasket() {
+            const basketContent = document.getElementById('basket-content');
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+            if (basket.length === 0) {
+                basketContent.innerHTML = '<p>Your basket is empty.</p>';
+            } else {
+                let basketHTML = '<ul>';
+                basket.forEach((item, index) => {
+                    basketHTML += `<li>${item.item} - $${item.price.toFixed(2)} <button onclick="removeFromBasket(${index})">Remove</button></li>`;
+                });
+                basketHTML += '</ul>';
+                basketContent.innerHTML = basketHTML;
+            }
+        }
+
+        function removeFromBasket(index) {
             let basket = JSON.parse(localStorage.getItem('basket')) || [];
-            basket.push({ item, price });
+            basket.splice(index, 1);
             localStorage.setItem('basket', JSON.stringify(basket));
-            alert(item + ' added to basket.');
+            displayBasket();
         }
     </script>
 </body>
