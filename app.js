@@ -8,20 +8,18 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Конфигурация подключения к базе данных SQL Server
 const config = {
-  user: 'alina',          // Имя пользователя
-  password: '12457800alina',           // Пароль
-  server: 'localhost',    // Имя сервера или IP-адрес
-  port: 1433,             // Порт сервера
-  database: 'SkyCourier', // Имя базы данных
+  user: 'alina',          
+  password: '12457800alina',           
+  server: 'localhost',    
+  port: 1433,            
+  database: 'SkyCourier', 
   options: {
-    encrypt: true,        // Используйте шифрование
-    trustServerCertificate: true // Доверие самоподписанному сертификату
+    encrypt: true,        
+    trustServerCertificate: true 
   }
 };
 
-// Подключение к базе данных
 sql.connect(config, err => {
   if (err) {
     console.error('Ошибка подключения к базе данных:', err);
@@ -30,15 +28,12 @@ sql.connect(config, err => {
   console.log('Подключено к базе данных SQL Server.');
 });
 
-// Обслуживание статических файлов из директории "public"
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Обработка корневого маршрута для предоставления index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Маршрут для получения всех пользователей (GET-запрос)
 app.get('/api/users', (req, res) => {
   const request = new sql.Request();
   request.query('SELECT * FROM Users', (err, result) => {
@@ -51,7 +46,6 @@ app.get('/api/users', (req, res) => {
   });
 });
 
-// Маршрут для создания нового пользователя (POST-запрос)
 app.post('/api/users', (req, res) => {
   const { name, email, password } = req.body;
   console.log('Полученные данные:', req.body);
@@ -71,7 +65,6 @@ app.post('/api/users', (req, res) => {
   });
 });
 
-// Маршрут для аутентификации пользователя (POST-запрос)
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -111,8 +104,6 @@ app.get('/api/cafe/:id', (req, res) => {
     }
   });
 });
-
-
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Сервер работает на порту ${PORT}`);

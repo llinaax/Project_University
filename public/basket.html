@@ -33,23 +33,25 @@
         </div>
         <div id="basket-content"></div>
         <div id="order-summary"></div>
+        <div id="go-to-payment"></div>
     </section>
     <section class="types-of-drones">
         <h2>Choose your drone</h2>
         <div class="row">
             <div class="item">
                 <img src="/pics/SkyRider_Pro.jpg" alt="SkyRider Pro">
-                <p>SkyRider Pro</p>
+                <p>SkyRider Pro - $20.99</p>
                 <button class="order-button" onclick="addToBasket('SkyRider Pro', 20.99)">Add to Basket</button>
+
             </div>
             <div class="item">
                 <img src="/pics/AeroScout_X.jpg" alt="AeroScout X">
-                <p>AeroScout X</p>
+                <p>AeroScout X - $15</p>
                 <button class="order-button" onclick="addToBasket('AeroScout X', 15)">Add to Basket</button>
             </div>
             <div class="item">
                 <img src="/pics/HawkEye_Ultra.jpg" alt="HawkEye Ultra">
-                <p>HawkEye Ultra</p>
+                <p>HawkEye Ultra - $36.99</p>
                 <button class="order-button" onclick="addToBasket('HawkEye Ultra', 36.99)">Add to Basket</button>
             </div>
         </div>
@@ -140,10 +142,11 @@
     const basketContent = document.getElementById('basket-content');
     const orderSummary = document.getElementById('order-summary');
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
-
+    const payment =  document.getElementById('go-to-payment');       
     if (basket.length === 0) {
         basketContent.innerHTML = '<p>Your basket is empty. Please go to <a href="order.html">Order page</a></p>';
         orderSummary.innerHTML = '';
+        payment.innerHTML = '';
     } else {
         let basketHTML = '<table><tr><th>Item</th><th>Cafe</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th><th>Save</th></tr>';
         basket.forEach((item, index) => {
@@ -164,6 +167,7 @@
 
         let total = basket.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
         orderSummary.innerHTML = `<p>Summary: $${total.toFixed(2)}</p>`;
+        payment.innerHTML = `<button>Pay</button>`;
     }
 }
 
