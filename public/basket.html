@@ -21,7 +21,7 @@
         </nav>
         <div class="log_in">
             <a href="log_in.html" class="log_in" id="log_in">Log in</a>
-            <a href="sig_up.html" class="log_in" id="sign_up">Sign in</a>
+            <a href="sig_up.html" class="log_in" id="sign_up">Sign up</a>
             <a href="#" id="logoutLink" style="display:none;">Log out</a>
             <hr class="line" width="35%" size="3" color="black"/>
             <span id="welcomeMessage" style="display:none;">Welcome, <span id="username"></span></span>
@@ -33,6 +33,7 @@
             <h1>Basket</h1>
         </div>
         <div id="basket-content"></div>
+        <div id="order-summary"></div>
     </section>
     <footer>
         <div class="contact-info">
@@ -95,6 +96,9 @@
                 });
                 basketHTML += '</ul>';
                 basketContent.innerHTML = basketHTML;
+
+                let total = basket.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('order-summary').innerHTML = `<p>Summary: $${total.toFixed(2)}</p>`;
             }
         }
 
@@ -107,4 +111,5 @@
     </script>
 </body>
 </html>
+
 
