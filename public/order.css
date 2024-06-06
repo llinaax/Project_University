@@ -1,4 +1,4 @@
-body {
+html, body {
   font-family: Courier New, sans-serif;
   margin: 0;
   padding: 0;
@@ -186,7 +186,6 @@ nav ul li a:hover {
 
 .types-of-drones {
   color: black;
-  background-color: #e0f7ff;
   padding: 20px;
   text-align: center;
 }

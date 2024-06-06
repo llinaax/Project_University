@@ -59,7 +59,7 @@
                         <label for="fries-quantity">Quantity:</label>
                         <input type="number" id="fries-quantity" name="quantity" min="1" value="1">
                     </div>
-                    <button class="order-button" onclick="addToBasket('Fries', 2.99, document.getElementById('fries-quantity').value)">Add to Basket</button>
+                    <button class="order-button" onclick="addToBasket('Fries', 2.99, document.getElementById('fries-quantity').value, )">Add to Basket</button>
                 </div>
             </div>
         </div>
@@ -139,15 +139,11 @@
         });
 
         function addToBasket(item, price, quantity) {
+            const cafeName = document.getElementById('cafeName').textContent;
             let basket = JSON.parse(localStorage.getItem('basket')) || [];
-            const existingItem = basket.find(i => i.item === item);
-            if (existingItem) {
-                existingItem.quantity += parseInt(quantity);
-            } else {
-                basket.push({ item, price, quantity: parseInt(quantity) });
-            }
+            basket.push({ item, price, quantity: parseInt(quantity), cafe: cafeName });
             localStorage.setItem('basket', JSON.stringify(basket));
-            alert(`${quantity} ${item}(s) added to basket.`);
+            alert(`${quantity} ${item}(s) from ${cafeName} added to basket.`);
         }
     </script>
 </body>

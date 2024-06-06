@@ -1,4 +1,4 @@
-body {
+html, body {
     font-family: Courier New, sans-serif ;
     margin: 0;
     padding: 0;
@@ -6,8 +6,15 @@ body {
     color: white;
     text-decoration: none;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: 100%;
 }
-
+body {
+    display: flex;
+    flex-direction: column;
+}
+section {
+    flex: 1;
+}
 header {
     height: 50px;
     display: flex;
@@ -166,7 +173,33 @@ button:hover {
     background-color: #a2d4f3;
 }
 
+.types-of-drones {
+    color: black;
+    background-color: #c4f7fd;
+    text-align: center;
+    border-radius: 100px;
+    align-items: center;
+    padding: 20px;
+}
+.or
+.types-of-drones .row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+.types-of-drones .item {
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+}
+
+.types-of-drones .item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
 footer {
     color: black;
     display: flex;

@@ -139,10 +139,11 @@
         });
 
         function addToBasket(item, price, quantity) {
+            const cafeName = document.getElementById('cafeName').textContent;
             let basket = JSON.parse(localStorage.getItem('basket')) || [];
-            basket.push({ item, price, quantity: parseInt(quantity) });
+            basket.push({ item, price, quantity: parseInt(quantity), cafe: cafeName });
             localStorage.setItem('basket', JSON.stringify(basket));
-            alert(`${quantity} ${item}(s) added to basket.`);
+            alert(`${quantity} ${item}(s) from ${cafeName} added to basket.`);
         }
     </script>
 </body>
