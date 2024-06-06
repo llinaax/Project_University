@@ -124,7 +124,7 @@ h1 {
 
 .menu-item img {
     width: 300px;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -146,20 +146,55 @@ h1 {
 .menu-item input[type="number"] {
     width: 50px;
     padding: 5px;
+    background-color: #D1F7FF;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .menu-item button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: white;
-    background-color: #009dff;
+    background-color: #6FD8EF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
     cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 200px;
+    height: 50px;
+    font-family: Courier New, sans-serif ;
 }
 
 .menu-item button:hover {
-    background-color: #007acc;
+    background-color: #b2ebf2;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.bottom-buttons button {
+    background-color: #6FD8EF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 200px;
+    height: 50px;
+    font-family: Courier New, sans-serif ;
+    margin: 0 10px;
+}
+
+.bottom-buttons button:hover {
+    background-color: #b2ebf2;
 }
 
 footer {

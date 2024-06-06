@@ -15,7 +15,6 @@
             <ul>
                 <li class="head"><a href="index.html">Home</a></li>
                 <li class="head"><a href="order.html">Order</a></li>
-                <li class="head"><a href="#">Contact</a></li>
                 <li class="head"><a href="basket.html">Basket</a></li>
             </ul>
         </nav>
@@ -29,12 +28,13 @@
         </div>
     </header>
     <section>
-        <div>
+        <div class="center-title">
             <h1>Basket</h1>
         </div>
         <div id="basket-content"></div>
         <div id="order-summary"></div>
     </section>
+    <hr width="100%" size="3" color="#ACE6F2" />
     <footer>
         <div class="contact-info">
             <p>Contacts:</p>
@@ -83,33 +83,59 @@
             displayBasket();
         });
 
-        function displayBasket() {
-            const basketContent = document.getElementById('basket-content');
-            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+function displayBasket() {
+    const basketContent = document.getElementById('basket-content');
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
 
-            if (basket.length === 0) {
-                basketContent.innerHTML = '<p>Your basket is empty.</p>';
-            } else {
-                let basketHTML = '<ul>';
-                basket.forEach((item, index) => {
-                    basketHTML += `<li>${item.item} - $${item.price.toFixed(2)} <button onclick="removeFromBasket(${index})">Remove</button></li>`;
-                });
-                basketHTML += '</ul>';
-                basketContent.innerHTML = basketHTML;
+    if (basket.length === 0) {
+        basketContent.innerHTML = '<p>Your basket is empty.</p>';
+    } else {
+        let basketHTML = '<table><tr><th>Item</th><th>Cafe</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th><th>Save</th></tr>';
+        basket.forEach((item, index) => {
+            const price = parseFloat(item.price); // Преобразование строки в число
+            const itemTotal = price * item.quantity;
+            basketHTML += `<tr>
+                <td>${item.item}</td>
+                <td>${item.cafe}</td>
+                <td>$${price.toFixed(2)}</td>
+                <td><input id="quantity-${index}" type="number" value="${item.quantity}" min="1" value="1"></td>
+                <td>$${itemTotal.toFixed(2)}</td>
+                <td><button onclick="removeFromBasket(${index})">Remove</button></td>
+                <td><button onclick="saveButton(${index})">Save</button></td>
+            </tr>`;
+        });
+        basketHTML += '</table>';
+        basketContent.innerHTML = basketHTML;
 
-                let total = basket.reduce((sum, item) => sum + item.price, 0);
-                document.getElementById('order-summary').innerHTML = `<p>Summary: $${total.toFixed(2)}</p>`;
-            }
-        }
+        let total = basket.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
+        document.getElementById('order-summary').innerHTML = `<p>Summary: $${total.toFixed(2)}</p>`;
+        
+    }
+}
 
-        function removeFromBasket(index) {
-            let basket = JSON.parse(localStorage.getItem('basket')) || [];
-            basket.splice(index, 1);
-            localStorage.setItem('basket', JSON.stringify(basket));
-            displayBasket();
-        }
+function saveButton(index) {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const newQuantity = parseInt(document.getElementById(`quantity-${index}`).value);
+    basket[index].quantity = newQuantity;
+    localStorage.setItem('basket', JSON.stringify(basket));
+    displayBasket(); 
+}
+
+function removeFromBasket(index) {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    basket.splice(index, 1);
+    localStorage.setItem('basket', JSON.stringify(basket));
+    displayBasket();
+}
+
+function updateQuantity(index, quantity) {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    basket[index].quantity = parseInt(quantity);
+    localStorage.setItem('basket', JSON.stringify(basket));
+    displayBasket(); 
+}
+
+
     </script>
 </body>
 </html>
-
-

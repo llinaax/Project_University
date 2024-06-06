@@ -16,7 +16,6 @@
             <ul>
                 <li class="head"><a href="index.html">Home</a></li>
                 <li class="head"><a href="order.html">Order</a></li>
-                <li class="head"><a href="#">Contact</a></li>
                 <li class="head"><a href="basket.html">Basket</a></li>
             </ul>
         </nav>
@@ -35,58 +34,58 @@
     </div>
     
     <div class="search-section">
-        <input type="text" placeholder="Search">
-        <button><img src="/pics/search.png" alt="Search"></button>
+        <input type="text" id="searchInput" placeholder="Search">
+        <button id="searchButton"><img src="/pics/search.png" alt="Search"></button>
     </div>
     
     <div class="category-buttons">
-        <button>All</button>
-        <button>Fastfood</button>
-        <button>Pizza</button>
-        <button>Sushi</button>
+        <button onclick="filterCategory('all')">All</button>
+        <button onclick="filterCategory('fastfood')">Fastfood</button>
+        <button onclick="filterCategory('pizza')">Pizza</button>
+        <button onclick="filterCategory('sushi')">Sushi</button>
     </div>
     
-    <div class="content">
+    <div class="content" id="restaurantContainer">
         <div class="row">
-            <div class="item">
-                <a href="mac.html"><img src="/pics/mac.jpg" alt="McDonald's"></a> 
-                <p><a href="mac.html">MacDonald's</a></p>
+            <div class="item" data-category="fastfood">
+                <a href="mac.html?id=1"><img src="/pics/mac.jpg" alt="McDonald's"></a> 
+                <p><a href="mac.html?id=1" class="restaurant-link">MacDonald's</a></p>
             </div>
-            <div class="item">
-                <a href="kfc.html"><img src="/pics/kfc.jpg" alt="KFC"></a>
-                <p><a href="kfc.html">KFC</a></p>
+            <div class="item" data-category="fastfood">
+                <a href="kfc.html?id=2"><img src="/pics/kfc.jpg" alt="KFC"></a>
+                <p><a href="kfc.html?id=2" class="restaurant-link">KFC</a></p>
             </div>
-            <div class="item">
-                <a href="burgerking.html"><img src="/pics/burger-king.jpg" alt="BurgerKing"></a>
-                <p><a href="burgerking.html">BurgerKing</a></p>
+            <div class="item" data-category="fastfood">
+                <a href="burgerking.html?id=3"><img src="/pics/burger-king.jpg" alt="BurgerKing"></a>
+                <p><a href="burgerking.html?id=3" class="restaurant-link">BurgerKing</a></p>
             </div>
         </div>
         <div class="row">
-            <div class="item">
-                <a href="dominos.html"><img src="/pics/dominos.jpg" alt="Domino's"></a>
-                <p><a href="dominos.html">Domino's</a></p>
+            <div class="item" data-category="pizza">
+                <a href="dominos.html?id=4"><img src="/pics/dominos.jpg" alt="Domino's"></a>
+                <p><a href="dominos.html?id=4" class="restaurant-link">Domino's</a></p>
             </div>
-            <div class="item">
-                <a href="pizzahut.html"><img src="/pics/pizza-hut.jpg" alt="Pizza Hut"></a>
-                <p><a href="pizzahut.html">Pizza Hut</a></p>
+            <div class="item" data-category="pizza">
+                <a href="pizzahut.html?id=5"><img src="/pics/pizza-hut.jpg" alt="Pizza Hut"></a>
+                <p><a href="pizzahut.html?id=5" class="restaurant-link">Pizza Hut</a></p>
             </div>
-            <div class="item">
-                <a href="papajohns.html"><img src="/pics/john.jpg" alt="Papa John's"></a>
-                <p><a href="papajohns.html">Papa John's</a></p>
+            <div class="item" data-category="pizza">
+                <a href="papajohns.html?id=6"><img src="/pics/john.jpg" alt="Papa John's"></a>
+                <p><a href="papajohns.html?id=6" class="restaurant-link">Papa John's</a></p>
             </div>
         </div>
         <div class="row">
-            <div class="item">
-                <a href="sakura.html"><img src="/pics/sakura-sushi.jpg" alt="Sacura Sushi"></a>
-                <p><a href="sakura.html">Sacura Sushi</a></p>
+            <div class="item" data-category="sushi">
+                <a href="sakura.html?id=7"><img src="/pics/sakura-sushi.jpg" alt="Sacura Sushi"></a>
+                <p><a href="sakura.html?id=7" class="restaurant-link">Sacura Sushi</a></p>
             </div>
-            <div class="item">
-                <a href="sushiexpress.html"><img src="/pics/sushi-express.jpg" alt="Sushi Express"></a>
-                <p><a href="sushiexpress.html">Sushi Express</a></p>
+            <div class="item" data-category="sushi">
+                <a href="sushiexpress.html?id=8"><img src="/pics/sushi-express.jpg" alt="Sushi Express"></a>
+                <p><a href="sushiexpress.html?id=8" class="restaurant-link">Sushi Express</a></p>
             </div>
-            <div class="item">
-                <a href="sushipoint.html"><img src="/pics/sushi-point.jpg" alt="Sushi Point"></a>
-                <p><a href="sushipoint.html">Sushi Point</a></p>
+            <div class="item" data-category="sushi">
+                <a href="sushipoint.html?id=9"><img src="/pics/sushi-point.jpg" alt="Sushi Point"></a>
+                <p><a href="sushipoint.html?id=9" class="restaurant-link">Sushi Point</a></p>
             </div>
         </div>
     </div>
@@ -157,6 +156,54 @@
                 alert('Logged out successfully.');
                 window.location.href = 'index.html';
             });
+
+            // Search functionality
+            document.getElementById('searchButton').addEventListener('click', function() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const restaurantItems = document.querySelectorAll('.content .item');
+                const droneItems = document.querySelectorAll('.types-of-drones .item');
+
+                restaurantItems.forEach(item => {
+                    const itemName = item.querySelector('.restaurant-link').textContent.toLowerCase();
+                    if (itemName.includes(searchInput)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                droneItems.forEach(item => {
+                    const itemName = item.querySelector('p').textContent.toLowerCase();
+                    if (itemName.includes(searchInput)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+
+            window.filterCategory = function(category) {
+                document.getElementById('searchInput').value = '';
+                const restaurantItems = document.querySelectorAll('.content .item');
+                const droneItems = document.querySelectorAll('.types-of-drones .item');
+
+                restaurantItems.forEach(item => {
+                    if (category === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        const itemCategory = item.getAttribute('data-category');
+                        if (itemCategory === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+
+                droneItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+            };
         });
     </script>
 </body>

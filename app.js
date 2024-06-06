@@ -93,6 +93,25 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
+app.get('/api/cafe/:id', (req, res) => {
+  const cafeId = req.params.id;
+  const query = `SELECT * FROM cafes WHERE id = ${cafeId}`;
+
+  sql.query(query, (err, result) => {
+    if (err) {
+      console.error('Ошибка при получении данных о кафе из базы данных:', err);
+      res.status(500).send('Ошибка при получении данных о кафе из базы данных.');
+    } else {
+      if (result.recordset.length > 0) {
+        const cafe = result.recordset[0];
+        res.json(cafe);
+      } else {
+        res.status(404).send('Кафе не найдено');
+      }
+    }
+  });
+});
+
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {

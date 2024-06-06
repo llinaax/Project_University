@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mac.css">
-    <title>MacDonald's Menu</title>
+    <title>KFC Menu</title>
 </head>
 <body>
     <header>
@@ -15,7 +15,6 @@
             <ul>
                 <li class="head"><a href="index.html">Home</a></li>
                 <li class="head"><a href="order.html">Order</a></li>
-                <li class="head"><a href="#">Contact</a></li>
                 <li class="head"><a href="basket.html">Basket</a></li>
             </ul>
         </nav>
@@ -30,7 +29,7 @@
     </header>
     <section>
         <div>
-            <h1>KFC</h1>
+            <h1>Welcome to <span id="cafeName"></span></h1>
         </div>
         <div class="menu">
             <h2>Menu</h2>
@@ -42,7 +41,7 @@
                         <label for="bigmac-quantity">Quantity:</label>
                         <input type="number" id="bigmac-quantity" name="quantity" min="1" value="1">
                     </div>
-                    <button onclick="addToBasket('Big Mac', 5.99, document.getElementById('bigmac-quantity').value)">Add to Basket</button>
+                    <button class="order-button" onclick="addToBasket('Burger', 5.99, document.getElementById('bigmac-quantity').value)">Add to Basket</button>
                 </div>
                 <div class="menu-item">
                     <img src="/pics/nugets.jpg" alt="Chicken Nuggets">
@@ -51,7 +50,7 @@
                         <label for="nuggets-quantity">Quantity:</label>
                         <input type="number" id="nuggets-quantity" name="quantity" min="1" value="1">
                     </div>
-                    <button onclick="addToBasket('Chicken Nuggets', 4.99, document.getElementById('nuggets-quantity').value)">Add to Basket</button>
+                    <button class="order-button" onclick="addToBasket('Chicken Nuggets', 4.99, document.getElementById('nuggets-quantity').value)">Add to Basket</button>
                 </div>
                 <div class="menu-item">
                     <img src="/pics/fries.jpg" alt="Fries">
@@ -60,11 +59,15 @@
                         <label for="fries-quantity">Quantity:</label>
                         <input type="number" id="fries-quantity" name="quantity" min="1" value="1">
                     </div>
-                    <button onclick="addToBasket('Fries', 2.99, document.getElementById('fries-quantity').value)">Add to Basket</button>
+                    <button class="order-button" onclick="addToBasket('Fries', 2.99, document.getElementById('fries-quantity').value)">Add to Basket</button>
                 </div>
             </div>
         </div>
     </section>
+    <div class="bottom-buttons">
+        <button class="nav-button" onclick="window.location.href='order.html'">Go Back</button>
+        <button class="nav-button" onclick="window.location.href='basket.html'">Go to Basket</button>
+    </div>
     <footer>
         <div class="contact-info">
             <p>Contacts:</p>
@@ -81,6 +84,30 @@
         </div>
     </footer>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cafeId = urlParams.get('id');
+
+            if (cafeId) {
+                console.log('Fetching data for cafe ID:', cafeId); 
+                fetch(`http://localhost:5500/api/cafe/${cafeId}`) 
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Received data:', data); 
+                        document.getElementById('cafeName').textContent = data.name;
+                    })
+                    .catch(error => {
+                        console.error('Ошибка при получении данных о кафе:', error);
+                    });
+            } else {
+                console.error('ID кафе не указан в URL');
+            }
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const username = localStorage.getItem('username');

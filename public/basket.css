@@ -90,13 +90,13 @@ nav ul li a:hover {
 }
 
 section {
+    margin-top: 50px;
     display: flex;
-    justify-content: left;
     flex-direction: column;
-    align-items: center;
 }
-
-h1 {
+.center-title {
+    text-align: center;
+    margin-top: 20px;
     font-size: 2em;
     color: black;
 }
@@ -112,23 +112,60 @@ ul li {
     border-radius: 5px;
     color: black;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    font-size: 24px;
+    gap: 30px;
 }
 
 button {
     padding: 5px 10px;
     font-size: 1em;
     color: white;
-    background-color: #009dff;
+    background-color: #a2d4f3;
     border: none;
-    border-radius: 5px;
+    border-radius: 60px;
     cursor: pointer;
+    float: right;
 }
 
 button:hover {
     background-color: #007acc;
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #95b8d0;
+}
+
+th {
+    background-color: white;
+}
+
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #a2d4f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+button:hover {
+    background-color: #a2d4f3;
+}
+
 
 footer {
     color: black;
@@ -137,7 +174,18 @@ footer {
     align-items: center;
     padding: 20px;
 }
-
+#basket-content{
+    font-size: 24px;
+    color: black;
+    margin: 10px 0;
+    padding: 10px;
+}
+#order-summary{
+    font-size: 24px;
+    color: black;
+    margin: 10px 0;
+    padding: 10px;
+}
 .contact-info p {
     margin: 5px 0;
     font-size: 24px;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mac.css">
-    <title>MacDonald's Menu</title>
+    <title>Burger King Menu</title>
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
         </nav>
         <div class="log_in">
             <a href="log_in.html" class="log_in" id="log_in">Log in</a>
-            <a href="sig_up.html" class="log_in" id="sign_up">Sign up</a>
+            <a href="sig_up.html" class="log_in" id="sign_up">Sign in</a>
             <a href="#" id="logoutLink" style="display:none;">Log out</a>
             <hr class="line" width="35%" size="3" color="black"/>
             <span id="welcomeMessage" style="display:none;">Welcome, <span id="username"></span></span>
@@ -65,9 +65,9 @@
         </div>
     </section>
     <div class="bottom-buttons">
-        <button class="nav-button" onclick="window.location.href='order.html'">Go Back</button>
-        <button class="nav-button" onclick="window.location.href='basket.html'">Go to Basket</button>
-    </div>
+      <button class="nav-button" onclick="window.location.href='order.html'">Go Back</button>
+      <button class="nav-button" onclick="window.location.href='basket.html'">Go to Basket</button>
+  </div>
     <footer>
         <div class="contact-info">
             <p>Contacts:</p>
@@ -140,12 +140,7 @@
 
         function addToBasket(item, price, quantity) {
             let basket = JSON.parse(localStorage.getItem('basket')) || [];
-            const existingItem = basket.find(i => i.item === item);
-            if (existingItem) {
-                existingItem.quantity += parseInt(quantity);
-            } else {
-                basket.push({ item, price, quantity: parseInt(quantity) });
-            }
+            basket.push({ item, price, quantity: parseInt(quantity) });
             localStorage.setItem('basket', JSON.stringify(basket));
             alert(`${quantity} ${item}(s) added to basket.`);
         }
