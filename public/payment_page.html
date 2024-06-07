@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>SkyCourier</title>
+    <title>Payment</title>
+    <link rel="stylesheet" href="payment.css">
 </head>
 <body>
     <header>
@@ -27,42 +27,12 @@
             <img src="/pics/account.png" alt="Login Icon" class="account">
         </div>
     </header>
-
-    <section class="main">
-        <img src="/pics/drone_cloud.png" alt="Drone" class="main-drone">
-        <div class="grocery" id="grocery-cart"></div>
-        <div class="grocery" id="grocery-cart1"></div>
-        <div class="grocery1" id="vegetable"></div>
-        <div class="grocery1" id="vegetable1"></div>
-        <div class="grocery2" id="pan"></div>
-        <div class="grocery2" id="pan1"></div>
-        <div class="cloud" id="cloud1"></div>
-        <div class="cloud" id="cloud2"></div>
-        <div class="cloud" id="cloud3"></div>
-        <div class="cloud" id="cloud4"></div>
-        <div class="cloud" id="cloud5"></div>
-        <div class="cloud" id="cloud6"></div>
-        <div class="cloud" id="cloud7"></div>
-        <div class="cloud" id="cloud8"></div>
-        <h1>SkyCourier</h1>
-        <button class="order-button" onclick="location.href='order.html'">Click to order</button>
+    <section>
+        <div id="payment-content"></div>
+        <button id="finalize-payment">Finalize Payment</button>
     </section>
-    
-    <section class="about">
-        <hr  width="100%" size="3" color="#D1F7FF" />
-        <h2>About us</h2>
-        <hr  width="100%" size="3" color="#D1F7FF" />
-        <div class="para">
-        <p><b>SkyCourier</b> — is a revolutionary delivery service that uses drones to quickly and efficiently deliver goods from shops and restaurants right to your doorstep.
-            We strive to provide our customers with the highest level of comfort and speed by providing unique ordering options
-            and receiving goods <br>
-            </p>
-        </div>
-        <img src="/pics/main_drone.png" alt="Drone Icon" class="about-drone">
-    </section>
-    <hr  width="99%" size="3" color="#ACE6F2" />
+    <hr width="99%" size="3" color="#ACE6F2" />
     <footer>
-        
         <div class="contact-info">
             <p>Contacts:</p>
             <p>+000-000-000</p>
@@ -106,6 +76,57 @@
                 alert('Logged out successfully.');
                 window.location.href = 'index.html';
             });
+
+            displayPaymentContent();
+        });
+
+        function displayPaymentContent() {
+            const paymentContent = document.getElementById('payment-content');
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            
+            if (basket.length === 0) {
+                paymentContent.innerHTML = '<p>Your basket is empty. Please go to <a href="order.html">Order page</a></p>';
+            } else {
+                let paymentHTML = '<table><tr><th>Item</th><th>Price</th><th>Quantity</th><th>Total</th></tr>';
+                basket.forEach((item) => {
+                    const price = parseFloat(item.price); 
+                    const itemTotal = price * item.quantity;
+                    paymentHTML += `<tr>
+                        <td>${item.item}</td>
+                        <td>$${price.toFixed(2)}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${itemTotal.toFixed(2)}</td>
+                    </tr>`;
+                });
+                paymentHTML += '</table>';
+                paymentContent.innerHTML = paymentHTML;
+            }
+        }
+
+        document.getElementById('finalize-payment').addEventListener('click', function() {
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            if (basket.length > 0) {
+                fetch('/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ items: basket })
+                }).then(response => {
+                    if (response.ok) {
+                        localStorage.removeItem('basket');
+                        alert('Payment successful!');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Payment failed. Please try again.');
+                    }
+                }).catch(error => {
+                    console.error('Payment error:', error);
+                    alert('Payment failed. Please try again.');
+                });
+            } else {
+                alert('Your basket is empty.');
+            }
         });
     </script>
 </body>

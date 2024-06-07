@@ -167,7 +167,7 @@
 
         let total = basket.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
         orderSummary.innerHTML = `<p>Summary: $${total.toFixed(2)}</p>`;
-        payment.innerHTML = `<button>Pay</button>`;
+        payment.innerHTML = `<a href="payment_page.html"><button>Pay</button></a>`;
     }
 }
 
