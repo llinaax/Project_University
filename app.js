@@ -2,21 +2,33 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const sql = require('mssql');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 const config = {
-  user: 'alina',          
-  password: '12457800alina',           
-  server: 'localhost',    
-  port: 1433,            
-  database: 'SkyCourier', 
+  user: 'alina',
+  password: '12457800alina',
+  server: 'localhost',
+  port: 1433,
+  database: 'SkyCourier',
   options: {
-    encrypt: true,        
-    trustServerCertificate: true 
+    encrypt: true,
+    trustServerCertificate: true
   }
 };
 
@@ -28,9 +40,53 @@ sql.connect(config, err => {
   console.log('Подключено к базе данных SQL Server.');
 });
 
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+    done(null, obj);
+});
+
+passport.use(new GoogleStrategy({
+    clientID: '554834202170-e2g1o92aovsfkaulisajuko2hd6g58fm.apps.googleusercontent.com',
+    clientSecret: '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',
+    callbackURL: 'http://localhost:5500/auth/google/callback'
+}, (token, tokenSecret, profile, done) => {
+    // Здесь вы можете сохранить или найти пользователя в вашей базе данных
+    return done(null, profile);
+}));
+
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
+);
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+        res.redirect('/');
+    }
+);
+
+app.get('/logout', (req, res) => {
+    req.logout(err => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
+});
+
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/', ensureAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -86,6 +142,7 @@ app.post('/api/login', (req, res) => {
     }
   });
 });
+
 app.get('/api/cafe/:id', (req, res) => {
   const cafeId = req.params.id;
   const query = `SELECT * FROM cafes WHERE id = ${cafeId}`;
@@ -104,6 +161,7 @@ app.get('/api/cafe/:id', (req, res) => {
     }
   });
 });
+
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Сервер работает на порту ${PORT}`);
