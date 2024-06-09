@@ -243,3 +243,31 @@ footer {
   transform: translateY(20px);
   margin-right: 20px;
 }
+
+/* Existing styles */
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 9;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: black;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+

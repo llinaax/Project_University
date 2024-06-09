@@ -95,15 +95,15 @@
     <section class="types-of-drones">
         <h2>Types of Drones</h2>
         <div class="row">
-            <div class="item">
+            <div class="item" data-drone-info="SkyRider Pro: High-speed delivery drone with advanced navigation capabilities. Delivery speed: 60 km/h.">
                 <img src="/pics/SkyRider_Pro.jpg" alt="SkyRider Pro">
                 <p>SkyRider Pro</p>
             </div>
-            <div class="item">
+            <div class="item" data-drone-info="AeroScout X: Durable and reliable drone designed for long-distance deliveries. Delivery speed: 50 km/h.">
                 <img src="/pics/AeroScout_X.jpg" alt="AeroScout X">
                 <p>AeroScout X</p>
             </div>
-            <div class="item">
+            <div class="item" data-drone-info="HawkEye Ultra: Equipped with state-of-the-art sensors for precise delivery. Delivery speed: 55 km/h.">
                 <img src="/pics/HawkEye_Ultra.jpg" alt="HawkEye Ultra">
                 <p>HawkEye Ultra</p>
             </div>
@@ -127,6 +127,13 @@
             <img src="/pics/skycourier_pic.png" alt="SkyCourier Logo">
         </div>
     </footer>
+    
+    <!-- Drone Info Popup -->
+    <div id="droneInfoPopup" class="popup">
+        <span class="popup-close" onclick="closeDroneInfoPopup()">&times;</span>
+        <div id="droneInfoContent"></div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -204,7 +211,20 @@
                     item.style.display = 'block';
                 });
             };
+
+            const droneItems = document.querySelectorAll('.types-of-drones .item');
+            droneItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const droneInfo = item.getAttribute('data-drone-info');
+                    document.getElementById('droneInfoContent').textContent = droneInfo;
+                    document.getElementById('droneInfoPopup').style.display = 'block';
+                });
+            });
         });
+
+        function closeDroneInfoPopup() {
+            document.getElementById('droneInfoPopup').style.display = 'none';
+        }
     </script>
 </body>
 </html>

@@ -33,7 +33,7 @@
 
     <script>
         document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+            event.preventDefault();
 
             const formData = new FormData(this);
             const data = {
@@ -43,13 +43,18 @@
                 repeat_password: formData.get('repeat_password')
             };
 
-            // Проверка совпадения паролей
+            const password = data.password;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must be at least 8 characters long and contain both uppercase and lowercase letters.');
+                return;
+            }
+
             if (data.password !== data.repeat_password) {
                 alert('Passwords do not match.');
                 return;
             }
 
-            // Отправка данных на сервер
             fetch('/api/users', {
                 method: 'POST',
                 headers: {
@@ -74,4 +79,5 @@
     </script>
 </body>
 </html>
+
 
