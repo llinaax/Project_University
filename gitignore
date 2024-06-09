@@ -1,6 +1,3 @@
 # Игнорировать файл с секретами
-<<<<<<< HEAD
 Project\app.js
-=======
-app.js
->>>>>>> fa8a6ff72c5e1d063e6cf037e2933e9a6df754d5
+.env
